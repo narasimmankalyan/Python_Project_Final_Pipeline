@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    parameter{
+    parameters{
         string(name:"Version_name",description:"Provide Application Version")
     }
     stages{
