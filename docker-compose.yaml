@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  mongodb:
+    container_name: student-db
+    image: mongo:${MONGODB_IMAGE_TAG}
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    ports:
+      - "27018:27017"
+    networks:
+      - studentmongo
+    volumes:
+      - data-volume:/data/db
+
+  studentapp:
+    container_name: student-app
+    image: studentstore:${STUDENT_STORE_APP_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TAG: v1.0
+    ports:
+      - "8989:8080"
+    environment:
+      MONGODB_HOST: ${MONGODB_HOST}
+      MONGODB_PORT: ${MONGODB_PORT}
+      MONGODB_DBNAME: ${MONGODB_DBNAME}
+      MONGODB_USERNAME: ${MONGODB_USERNAME}
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD}
+    depends_on:
+      - mongodb
+    networks:
+      - studentmongo
+
+networks:
+  studentmongo:
+    driver: bridge
+
+volumes:
+  data-volume:
+    driver: local
