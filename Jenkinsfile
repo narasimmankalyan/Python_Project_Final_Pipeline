@@ -14,7 +14,7 @@ pipeline{
         stage("Setup Environment") {
             steps {
                 sh '''
-                    sudo apt install python3.12-venv
+                    apt install python3.12-venv
                     python3 -m venv murali
                     murali/bin/pip install --upgrade pip
                 '''
