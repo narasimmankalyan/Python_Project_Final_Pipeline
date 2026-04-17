@@ -14,15 +14,15 @@ pipeline{
         stage("Setup Environment") {
             steps {
                 sh '''
-                    python3 -m venv $VENV
-                    $VENV/bin/pip install --upgrade pip
+                    python3 -m venv murali
+                    murali/bin/pip install --upgrade pip
                 '''
             }
         }
         stage("Install Dependencies") {
             steps {
                 sh '''
-                    $VENV/bin/pip install -r requirements.txt
+                    murali/bin/pip install -r requirements.txt
                     
                 '''
             }
@@ -40,7 +40,7 @@ pipeline{
         stage("Unit Tests") {
             steps {
                 sh '''
-                    $VENV/bin/pytest --maxfail=1 --disable-warnings -v
+                    murali/bin/pytest --maxfail=1 --disable-warnings -v
                 '''
             }
         }
