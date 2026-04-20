@@ -12,5 +12,5 @@ MONGO_PASS = os.getenv("MONGODB_PASSWORD")
 MONGO_URL = "mongodb://admin:testtesttest@student-db:27017"
 
 client = AsyncIOMotorClient(MONGO_URL)
-db = client[MONGO_DB]
+db = client["studentdb"]
 collection = db["students"]
