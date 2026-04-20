@@ -41,7 +41,7 @@ pipeline{
             stage("Unit Tests") {
                 steps {
                     sh '''
-                        export PYTHONPATH=$PWD
+                        
                         murali/bin/pytest --maxfail=1 --disable-warnings -v
                     '''
                 }
