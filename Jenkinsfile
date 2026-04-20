@@ -29,15 +29,15 @@ pipeline{
             }
         }
                 // 🔥 Start MongoDB BEFORE tests
-        stage("Start Services") {
-            steps {
-                sh '''
-                    docker compose down || true
-                    docker compose up -d mongodb
-                    sleep 5
-                '''
+            stage("Start Services") {
+                steps {
+                    sh '''
+                        docker-compose down || true
+                        docker-compose up -d mongodb
+                        sleep 5
+                    '''
+                }
             }
-        }
         stage("Unit Tests") {
             steps {
                 sh '''
