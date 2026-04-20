@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        Docker_hub_credientials=credentials("dockerhub")
+    }
     parameters{
         string(name:"Version_name",description:"Provide Application Version")
     }
@@ -67,12 +70,21 @@ pipeline{
                 '''
             }
         }
-        stage("Tagging & Pussing the docker images"){
+        stage("Tagging docker images"){
             steps{
                 sh '''
                     docker tag my_custom_image:"${Version_name}" murali890/my_custom_image:"${Version_name}"
                 '''
             }
         }
+        stage("Logging in to Docker hub and Pushing"){
+            steps{
+                sh '''
+                    docker login -u $Docker_hub_credientials_USR --password $Docker_hub_credientials_PSW
+                    echo "logging in to docker hub and pusshing the images to the docker hub"
+                '''
+            }
+        }
+        
     }
 }
