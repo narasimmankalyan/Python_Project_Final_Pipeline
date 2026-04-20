@@ -82,6 +82,7 @@ pipeline{
                 sh '''
                     docker login -u $Docker_hub_credientials_USR --password $Docker_hub_credientials_PSW
                     echo "logging in to docker hub and pusshing the images to the docker hub"
+                    docker push murali890/my_custom_image:"${Version_name}"
                 '''
             }
         }
