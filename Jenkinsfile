@@ -93,6 +93,27 @@ pipeline{
                 '''
             }
         }
+        stage("Deploy Application"){
+    steps{
+        sh '''
+            echo "Starting deployment..."
+
+            # Set version for docker-compose
+            export STUDENT_STORE_APP_TAG=${Version_name}
+
+            # Stop old containers (if any)
+            docker compose down || true
+
+            # Pull latest image from DockerHub
+            docker compose pull
+
+            # Start containers in background
+            docker compose up -d
+
+            echo "Deployment completed successfully 🚀"
+        '''
+    }
+}
         
     }
 }
