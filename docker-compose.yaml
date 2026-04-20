@@ -14,7 +14,7 @@ services:
 
   studentapp:
     container_name: student-app
-    image: my_custom_image:${STUDENT_STORE_APP_TAG}   # ✅ use pipeline-built image
+    image: murali890/my_custom_image:${STUDENT_STORE_APP_TAG}  # ✅ FIXED
     ports:
       - "8989:8080"
     environment:
