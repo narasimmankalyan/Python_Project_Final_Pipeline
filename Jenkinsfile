@@ -70,7 +70,7 @@ pipeline{
         stage("Tagging & Pussing the docker images"){
             steps{
                 sh '''
-                    docker tag my_custom_image:"${Version_name"}" murali890/my_custom_image:"${Version_name}"
+                    docker tag my_custom_image:"${Version_name}" murali890/my_custom_image:"${Version_name}"
                 '''
             }
         }
