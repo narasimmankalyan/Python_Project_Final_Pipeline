@@ -32,8 +32,8 @@ pipeline{
         stage("Start Services") {
             steps {
                 sh '''
-                    docker-compose down || true
-                    docker-compose up -d mongodb
+                    docker compose down || true
+                    docker compose up -d mongodb
                     sleep 5
                 '''
             }
