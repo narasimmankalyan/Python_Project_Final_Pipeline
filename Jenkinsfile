@@ -41,14 +41,21 @@ pipeline{
                     '''
                 }
             }
-            stage("Unit Tests") {
-                steps {
-                    sh '''
-                        
-                        murali/bin/pytest --maxfail=1 --disable-warnings -v
-                    '''
-                }
+        stage("Unit Tests") {
+            environment {
+                MONGODB_HOST = "localhost"
+                MONGODB_PORT = "27018"
+                MONGODB_DBNAME = "studentdb"
+                MONGODB_USERNAME = "admin"
+                MONGODB_PASSWORD = "testtesttest"
             }
+            steps {
+                sh '''
+                    murali/bin/pytest --maxfail=1 --disable-warnings -v
+                '''
+            }
+}
+           
             stage("Stop Services"){
                 steps{
                     sh '''
