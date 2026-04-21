@@ -9,7 +9,7 @@ MONGO_PASS = os.getenv("MONGODB_PASSWORD")
 
 # MONGO_URL = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}"
 
-MONGO_URL = "mongodb://admin:testtesttest@localhost:27018"
+MONGO_URL = "mongodb://admin:testtesttest@student-db:27017"
 
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["studentdb"]
