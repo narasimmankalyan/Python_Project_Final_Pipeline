@@ -37,7 +37,9 @@ pipeline{
                     sh '''
                         docker compose down || true
                         docker compose up -d mongodb
-                        sleep 5
+            
+                        echo "Waiting for MongoDB to be ready..."
+                        sleep 10
                     '''
                 }
             }
